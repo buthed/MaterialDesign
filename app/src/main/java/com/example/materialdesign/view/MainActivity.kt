@@ -3,7 +3,6 @@ package com.example.materialdesign.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.materialdesign.R
-import com.example.materialdesign.utils.CustomImageView
 import com.example.materialdesign.view.picture.PODFragment
 
 class MainActivity : AppCompatActivity() {

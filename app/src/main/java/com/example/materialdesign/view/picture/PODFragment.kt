@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
@@ -41,13 +42,8 @@ class PODFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
-
         _binding = FragmentMainBinding.inflate(inflater)
         setActionBar()
-        /*binding.scroll.setOnScrollChangeListener{it,y,u,i,o->
-            binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-        }*/ // FIXME пытались исправить FAB
         return binding.root
     }
 
@@ -84,13 +80,12 @@ class PODFragment : Fragment() {
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
             }
         }
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
-        viewModel.sendServerRequest()
+
 
         binding.inputLayout.setEndIconOnClickListener {
             val i = Intent(Intent.ACTION_VIEW).apply {
@@ -99,44 +94,25 @@ class PODFragment : Fragment() {
             }
             startActivity(i)
         }
+
         bottomSheetBehavior = BottomSheetBehavior.from(binding.includeLayout.bottomSheetContainer)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-        /*bottomSheetBehavior.addBottomSheetCallback(
-            object :
-                BottomSheetBehavior.BottomSheetCallback() {
-                override fun onStateChanged(bottomSheet: View, newState: Int) {
-                    when (newState) {
-                        BottomSheetBehavior.STATE_DRAGGING -> TODO("not implemented")
-                        BottomSheetBehavior.STATE_COLLAPSED -> TODO("not implemented")
-                        BottomSheetBehavior.STATE_EXPANDED -> TODO("not implemented")
-                        BottomSheetBehavior.STATE_HALF_EXPANDED -> TODO("not implemented")
-                        BottomSheetBehavior.STATE_HIDDEN -> TODO("not implemented")
-                        BottomSheetBehavior.STATE_SETTLING -> TODO("not implemented")
-                    }
-                }
-
-                override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                    TODO("not implemented")
-                }
-            }
-        )*/
     }
 
     private fun renderData(data: PODData) {
         when (data) {
+            is PODData.Success -> {
+                binding.imageView.load(data.serverResponseData.url) { // квадратное становится прямоугольным
+                    kotlin.error(R.drawable.ic_load_error_vector)
+                }
+            }
             is PODData.Error -> {//TODO HW
                 Toast.makeText(context, "PODData.Error", Toast.LENGTH_LONG).show()
             }
             is PODData.Loading -> {
                 Toast.makeText(context, "PODData.Loading", Toast.LENGTH_LONG).show()
             }
-            is PODData.Success -> {
-                binding.imageView.load(data.serverResponseData.url) { // квадратное становится прямоугольным
-                    kotlin.error(R.drawable.ic_load_error_vector)
-                }
-                binding.includeLayout.bottomSheetDescriptionHeader.text =data.serverResponseData.explanation // так
-                binding.includeLayout.bottomSheetDescription.text =data.serverResponseData.explanation // или так, дальше уже на ваш вкус
-            }
+
         }
     }
 
