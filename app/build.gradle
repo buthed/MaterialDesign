@@ -19,7 +19,7 @@ android {
     buildTypes.each{
         Properties properties = new Properties()
         properties.load(project.rootProject.file("app.properties").newDataInputStream())
-        def nasaApiKey  = properties.getProperty("NASA_API_KEY", "")
+        def nasaApiKey  = properties.getProperty("NASA_API_KEY", "xR3V0LLpiP4UGAIGesFBAqoTXCOFNbbqBJnBgXXU")
         it.buildConfigField "String", "NASA_API_KEY", nasaApiKey
     }
     buildTypes {
@@ -49,6 +49,7 @@ dependencies {
 
     //Koil image download
     implementation("io.coil-kt:coil:0.9.2")
+
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'

@@ -44,7 +44,7 @@ class PODFragment : Fragment() {
         //return super.onCreateView(inflater, container, savedInstanceState)
 
         _binding = FragmentMainBinding.inflate(inflater)
-        //setActionBar()
+        setActionBar()
         /*binding.scroll.setOnScrollChangeListener{it,y,u,i,o->
             binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
         }*/ // FIXME пытались исправить FAB
@@ -100,7 +100,7 @@ class PODFragment : Fragment() {
             startActivity(i)
         }
         bottomSheetBehavior = BottomSheetBehavior.from(binding.includeLayout.bottomSheetContainer)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         /*bottomSheetBehavior.addBottomSheetCallback(
             object :
                 BottomSheetBehavior.BottomSheetCallback() {
@@ -132,8 +132,10 @@ class PODFragment : Fragment() {
             }
             is PODData.Success -> {
                 binding.imageView.load(data.serverResponseData.url) { // квадратное становится прямоугольным
-                    error(R.drawable.ic_load_error_vector)
+                    kotlin.error(R.drawable.ic_load_error_vector)
                 }
+                binding.includeLayout.bottomSheetDescriptionHeader.text =data.serverResponseData.explanation // так
+                binding.includeLayout.bottomSheetDescription.text =data.serverResponseData.explanation // или так, дальше уже на ваш вкус
             }
         }
     }
@@ -159,8 +161,7 @@ class PODFragment : Fragment() {
                 Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
             }
             R.id.app_bar_settings -> {
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,
-                    ChipsFragment.newInstance()).addToBackStack("").commit()
+                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,ChipsFragment.newInstance()).addToBackStack("").commit()
             }
             // у нашего бургера такой вот id внутри android
             android.R.id.home -> {

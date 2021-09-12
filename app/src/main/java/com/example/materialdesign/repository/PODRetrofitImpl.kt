@@ -18,7 +18,7 @@ class PODRetrofitImpl {
             .build().create(PictureOfTheDayAPI::class.java)
     }
 
-    private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
+    /*private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(interceptor)
         httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
@@ -33,5 +33,5 @@ class PODRetrofitImpl {
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
             return chain.proceed(chain.request())
         }
-    }
+    }*/
 }
