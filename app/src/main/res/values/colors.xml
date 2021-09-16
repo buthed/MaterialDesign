@@ -18,4 +18,22 @@
     <color name="myColorSecond">#FF76ff03</color>
     <color name="myColorHack">#FFfff3e0</color>
 
+
+    //Cosmos Theme
+    <color name="purple_200c">#0373FD</color>
+    <color name="purple_500c">#0264DC</color>
+    <color name="purple_700c">#003C85</color>
+
+    //Moon Theme
+    <color name="purple_200m">#BBFF00</color>
+    <color name="purple_500m">#87B602</color>
+    <color name="purple_700m">#4A6500</color>
+
+
+
+    //Mars Theme
+    <color name="purple_200ma">#FF2954</color>
+    <color name="purple_500ma">#B81D3D</color>
+    <color name="purple_700ma">#88182E</color>
+
 </resources>

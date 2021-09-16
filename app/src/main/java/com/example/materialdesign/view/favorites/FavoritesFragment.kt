@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.materialdesign.databinding.FragmentFavoritesBinding
 
+
 class FavoritesFragment:Fragment() {
     var _bindong: FragmentFavoritesBinding? = null
     val binding: FragmentFavoritesBinding

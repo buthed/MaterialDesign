@@ -11,5 +11,6 @@
     <string name="settings_radio_moon">Moon</string>
     <string name="settings_radio_mars">Mars</string>
     <string name="settings_radio_name">Choose your theme: </string>
+    <string name="settings_theme_title">Current theme</string>
 
 </resources>
