@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/settings_fr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/setting_title"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:fontFamily="@font/rampart_one"
+        android:textSize="@dimen/titleTextSize"
+        android:gravity="center"
+        android:text="@string/settings"/>
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/startMarginRowContent"
+        android:alpha="2"
+        android:background="@color/white"
+        android:checkedButton="@+id/radio_button_1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/endMarginRowContent"
+            android:text="@string/settings_radio_name"
+            android:textSize="@dimen/defaultTextSize" />
+
+        <RadioButton
+            android:id="@+id/rb1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/settings_radio_cosmos" />
+
+        <RadioButton
+            android:id="@+id/rb2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/settings_radio_moon" />
+
+        <RadioButton
+            android:id="@+id/rb3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/settings_radio_mars" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/titleTextSize"
+        android:text="@string/settings_theme_title"/>
+    <ImageView
+        android:id="@+id/settingImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

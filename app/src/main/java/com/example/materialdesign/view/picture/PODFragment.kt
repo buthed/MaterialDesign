@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
@@ -16,7 +15,8 @@ import com.example.materialdesign.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.view.MainActivity
-import com.example.materialdesign.view.ships.ChipsFragment
+import com.example.materialdesign.view.favorites.FavoritesFragment
+import com.example.materialdesign.view.settings.SettingsFragment
 import com.example.materialdesign.viewmodel.PODData
 import com.example.materialdesign.viewmodel.PODViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -103,14 +103,17 @@ class PODFragment : Fragment() {
         when (data) {
             is PODData.Success -> {
                 binding.imageView.load(data.serverResponseData.url) { // квадратное становится прямоугольным
-                    kotlin.error(R.drawable.ic_load_error_vector)
+                    placeholder(R.drawable.progress_animation) // этот
+                    error(R.drawable.ic_load_error_vector)
                 }
             }
             is PODData.Error -> {//TODO HW
                 Toast.makeText(context, "PODData.Error", Toast.LENGTH_LONG).show()
             }
             is PODData.Loading -> {
-                Toast.makeText(context, "PODData.Loading", Toast.LENGTH_LONG).show()
+                binding.imageView.load(R.drawable.progress_animation) {
+                    error(R.drawable.ic_load_error_vector)
+                }
             }
 
         }
@@ -134,10 +137,10 @@ class PODFragment : Fragment() {
 
         when (item.itemId) {
             R.id.app_bar_fav -> {
-                Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
+                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,FavoritesFragment.newInstance()).addToBackStack("").commit()
             }
             R.id.app_bar_settings -> {
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,ChipsFragment.newInstance()).addToBackStack("").commit()
+                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,SettingsFragment.newInstance()).addToBackStack("").commit()
             }
             // у нашего бургера такой вот id внутри android
             android.R.id.home -> {
