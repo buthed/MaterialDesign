@@ -7,5 +7,9 @@
     <string name="favourite">Favourite</string>
     <string name="settings">Settings</string>
     <string name="search">Search</string>
+    <string name="settings_radio_cosmos">Cosmos</string>
+    <string name="settings_radio_moon">Moon</string>
+    <string name="settings_radio_mars">Mars</string>
+    <string name="settings_radio_name">Choose your theme: </string>
 
 </resources>
