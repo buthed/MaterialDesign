@@ -103,14 +103,17 @@ class PODFragment : Fragment() {
         when (data) {
             is PODData.Success -> {
                 binding.imageView.load(data.serverResponseData.url) { // квадратное становится прямоугольным
-                    kotlin.error(R.drawable.ic_load_error_vector)
+                    placeholder(R.drawable.progress_animation) // этот
+                    error(R.drawable.ic_load_error_vector)
                 }
             }
             is PODData.Error -> {//TODO HW
                 Toast.makeText(context, "PODData.Error", Toast.LENGTH_LONG).show()
             }
             is PODData.Loading -> {
-                Toast.makeText(context, "PODData.Loading", Toast.LENGTH_LONG).show()
+                binding.imageView.load(R.drawable.progress_animation) {
+                    error(R.drawable.ic_load_error_vector)
+                }
             }
 
         }
