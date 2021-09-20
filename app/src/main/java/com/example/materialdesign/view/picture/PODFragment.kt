@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.example.materialdesign.R
+import com.example.materialdesign.api.ApiActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.view.MainActivity
@@ -137,7 +138,7 @@ class PODFragment : Fragment() {
 
         when (item.itemId) {
             R.id.app_bar_fav -> {
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,FavoritesFragment.newInstance()).addToBackStack("").commit()
+                startActivity(Intent(context, ApiActivity::class.java))
             }
             R.id.app_bar_settings -> {
                 requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,SettingsFragment.newInstance()).addToBackStack("").commit()
