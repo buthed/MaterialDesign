@@ -11,11 +11,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PODRetrofitImpl {
     private val baseUrl = "https://api.nasa.gov/"
 
-    fun getRetrofitImpl():PictureOfTheDayAPI{
+    fun getRetrofitImpl():RetrofitAPI{
         return Retrofit.Builder().baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             //.client(createOkHttpClient(PODInterceptor()))
-            .build().create(PictureOfTheDayAPI::class.java)
+            .build().create(RetrofitAPI::class.java)
     }
 
     /*private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
