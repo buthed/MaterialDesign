@@ -18,6 +18,7 @@ class ApiActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = "OBJECT ${(position + 1)}"
         }.attach()
+        binding.viewPager.setPageTransformer(ZoomOutPageTransformer())
 
         binding.tabLayout.getTabAt(0)?.customView =
             layoutInflater.inflate(R.layout.activity_api_tablayout_earth,null)
@@ -25,7 +26,6 @@ class ApiActivity : AppCompatActivity() {
             layoutInflater.inflate(R.layout.activity_api_tablayout_mars,null)
         binding.tabLayout.getTabAt(2)?.customView =
             layoutInflater.inflate(R.layout.activity_api_tablayout_system,null)
-
     }
 
 }
