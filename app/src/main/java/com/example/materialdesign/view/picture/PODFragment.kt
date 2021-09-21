@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.example.materialdesign.R
 import com.example.materialdesign.api.ApiActivity
+import com.example.materialdesign.api.ApiBottomActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.view.MainActivity
@@ -137,6 +138,10 @@ class PODFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
+            R.id.app_bar_other -> {
+                Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(context, ApiBottomActivity::class.java))
+            }
             R.id.app_bar_fav -> {
                 startActivity(Intent(context, ApiActivity::class.java))
             }

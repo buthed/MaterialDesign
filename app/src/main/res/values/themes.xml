@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="bottomNavigationStyle">@style/MyBottomNavigationStyle</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="CustomOutlinedBox" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -63,4 +64,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="MyBottomNavigationStyle" parent="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface">
+    </style>
+
 </resources>
