@@ -15,22 +15,15 @@ import com.example.materialdesign.view.ThemeMoon
 
 class SettingsFragment:Fragment(), View.OnClickListener {
 
-    private val KEY_SP_LOCAL = "sp_local"
-    private val KEY_CURRENT_THEME_LOCAL = "current_theme_local"
-
-
     private lateinit var parentActivity: MainActivity
     override fun onAttach(context: Context) {
         super.onAttach(context)
         parentActivity = activity as MainActivity
-
-
     }
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding
         get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,29 +51,14 @@ class SettingsFragment:Fragment(), View.OnClickListener {
         when (v.id) {
             R.id.rb1 -> {
                 parentActivity.setCurrentTheme(ThemeCosmos)
-//                requireActivity().supportFragmentManager
-//                    .beginTransaction()
-//                    .replace(R.id.container, SettingsFragment.newInstance())
-//                    .commit();// применяем для всей активити и для всех дочерних фрагментов
-//                binding.settingImageView.setBackgroundResource(R.drawable.bg_cosmos)
                 parentActivity.recreate()
             }
             R.id.rb2 -> {
                 parentActivity.setCurrentTheme(ThemeMoon)
-//                requireActivity().supportFragmentManager
-//                    .beginTransaction()
-//                    .replace(R.id.container, SettingsFragment.newInstance())
-//                    .commit();// применяем для всей активити и для всех дочерних фрагментов
-//                binding.settingImageView.setBackgroundResource(R.drawable.bg_moon)
                 parentActivity.recreate()
             }
             R.id.rb3 -> {
                 parentActivity.setCurrentTheme(ThemeMars)
-//                requireActivity().supportFragmentManager
-//                    .beginTransaction()
-//                    .replace(R.id.container, SettingsFragment.newInstance())
-//                    .commit();// применяем для всей активити и для всех дочерних фрагментов
-//                binding.settingImageView.setBackgroundResource(R.drawable.bg_mars)
                 parentActivity.recreate()
             }
         }

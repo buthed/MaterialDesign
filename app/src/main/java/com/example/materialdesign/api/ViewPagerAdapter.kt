@@ -23,5 +23,4 @@ class ViewPagerAdapter(private val fragmentActivity: FragmentActivity): Fragment
             else ->fragments[EARTH]
         }
     }
-
 }

@@ -24,7 +24,6 @@ import com.example.materialdesign.viewmodel.NasaViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
-
 class PODFragment : Fragment() {
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
@@ -143,7 +142,6 @@ class PODFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.app_bar_other -> {
                 Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
@@ -191,6 +189,4 @@ class PODFragment : Fragment() {
             startActivity(i)
         }
     }
-
-
 }

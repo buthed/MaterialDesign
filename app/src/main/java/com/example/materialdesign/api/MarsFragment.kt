@@ -70,7 +70,7 @@ class MarsFragment: Fragment() {
         fun newInstance(): MarsFragment {
             return MarsFragment()
         }
-        private const val TODAY = 0
+        private const val TODAY = 0   //TODO: доделать дни
         private const val YESTERDAY = 1
         private const val BEFORE_YESTERDAY = 2
     }
@@ -81,7 +81,6 @@ class MarsFragment: Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.app_bar_other -> {
                 Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
@@ -101,11 +100,5 @@ class MarsFragment: Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun setData(data: PODData.SuccessPOD)  {
-        val url = data.serverResponseData.hdurl
-            binding.imageView.load(url)
-
     }
 }
