@@ -16,13 +16,13 @@ import com.example.materialdesign.R
 import com.example.materialdesign.R.*
 import com.example.materialdesign.api.ApiActivity
 import com.example.materialdesign.api.ApiBottomActivity
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.view.MainActivity
 import com.example.materialdesign.view.settings.SettingsFragment
 import com.example.materialdesign.viewmodel.PODData
 import com.example.materialdesign.viewmodel.NasaViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 
 class PODFragment : Fragment() {
