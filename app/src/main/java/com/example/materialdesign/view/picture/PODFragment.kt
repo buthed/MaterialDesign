@@ -175,6 +175,7 @@ class PODFragment : Fragment() {
                 error(drawable.ic_load_error_vector)
             }
             binding.titleOfImageview.setText(data.serverResponseData.title)
+            binding.descOfImageview.setText(data.serverResponseData.explanation)
         }
     }
 
