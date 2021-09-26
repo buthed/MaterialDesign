@@ -27,5 +27,4 @@ class ApiActivity : AppCompatActivity() {
         binding.tabLayout.getTabAt(2)?.customView =
             layoutInflater.inflate(R.layout.activity_api_tablayout_system,null)
     }
-
 }

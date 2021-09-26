@@ -1,24 +1,24 @@
 package com.example.materialdesign.view
 
-import android.app.Activity
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.ActivityMainBinding
 import com.example.materialdesign.view.picture.PODFragment
-import com.example.materialdesign.view.settings.SettingsFragment
+import com.example.materialdesign.viewmodel.NasaViewModel
 
 
-const val ThemeDefault = 3
 const val ThemeCosmos = 1
 const val ThemeMoon = 2
 const val ThemeMars = 3
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    val nasaViewModel by lazy {
+        ViewModelProvider(this).get(NasaViewModel::class.java)
+    }
 
     private val KEY_SP = "sp"
     private val KEY_CURRENT_THEME = "current_theme"
@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setTheme(getRealStyle(getCurrentTheme()))
         binding =  ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
     }
 
     override fun onResume() {

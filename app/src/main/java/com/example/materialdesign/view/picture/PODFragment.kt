@@ -1,5 +1,6 @@
 package com.example.materialdesign.view.picture
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,17 +13,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.example.materialdesign.R
+import com.example.materialdesign.R.*
 import com.example.materialdesign.api.ApiActivity
 import com.example.materialdesign.api.ApiBottomActivity
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.view.MainActivity
-import com.example.materialdesign.view.favorites.FavoritesFragment
 import com.example.materialdesign.view.settings.SettingsFragment
 import com.example.materialdesign.viewmodel.PODData
-import com.example.materialdesign.viewmodel.PODViewModel
+import com.example.materialdesign.viewmodel.NasaViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
-
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class PODFragment : Fragment() {
 
@@ -34,10 +34,16 @@ class PODFragment : Fragment() {
             return _binding!!
         }
 
-    private val viewModel: PODViewModel by lazy {
-        ViewModelProvider(this).get(PODViewModel::class.java)
+    private val viewModel: NasaViewModel by lazy {
+        ViewModelProvider(this).get(NasaViewModel::class.java)
     }
 
+    lateinit var nasaViewModel: NasaViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        nasaViewModel = (context as MainActivity).nasaViewModel
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,33 +67,32 @@ class PODFragment : Fragment() {
                 binding.fab.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_back_fab
+                        drawable.ic_back_fab
                     )
                 )
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+                binding.bottomAppBar.replaceMenu(menu.menu_bottom_bar_other_screen)
             } else {
                 isMain = true
                 binding.bottomAppBar.navigationIcon =
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_hamburger_menu_bottom_bar
+                        drawable.ic_hamburger_menu_bottom_bar
                     )
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                 binding.fab.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_plus_fab
+                        drawable.ic_plus_fab
                     )
                 )
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
+                binding.bottomAppBar.replaceMenu(menu.menu_bottom_bar)
             }
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
-
+        nasaViewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
 
         binding.inputLayout.setEndIconOnClickListener {
             val i = Intent(Intent.ACTION_VIEW).apply {
@@ -96,28 +101,24 @@ class PODFragment : Fragment() {
             }
             startActivity(i)
         }
-
+        nasaViewModel.getPODFromServer((TODAY))
         bottomSheetBehavior = BottomSheetBehavior.from(binding.includeLayout.bottomSheetContainer)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     private fun renderData(data: PODData) {
         when (data) {
-            is PODData.Success -> {
-                binding.imageView.load(data.serverResponseData.url) { // квадратное становится прямоугольным
-                    placeholder(R.drawable.progress_animation) // этот
-                    error(R.drawable.ic_load_error_vector)
-                }
+            is PODData.SuccessPOD -> {
+                setData(data)
             }
             is PODData.Error -> {//TODO HW
                 Toast.makeText(context, "PODData.Error", Toast.LENGTH_LONG).show()
             }
             is PODData.Loading -> {
-                binding.imageView.load(R.drawable.progress_animation) {
-                    error(R.drawable.ic_load_error_vector)
+                binding.imageView.load(drawable.progress_animation) {
+                    error(drawable.ic_load_error_vector)
                 }
             }
-
         }
     }
 
@@ -126,8 +127,13 @@ class PODFragment : Fragment() {
         _binding = null
     }
 
-    companion object {
-        fun newInstance() = PODFragment()
+    companion object{
+        fun newInstance(): PODFragment {
+            return PODFragment()
+        }
+        private const val TODAY = 0
+        private const val YESTERDAY = 1
+        private const val BEFORE_YESTERDAY = 2
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -136,7 +142,6 @@ class PODFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.app_bar_other -> {
                 Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
@@ -155,5 +160,33 @@ class PODFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setData(data: PODData.SuccessPOD)  {
+        val url = data.serverResponseData.hdurl
+        if (url.isNullOrEmpty()) {
+            val videoUrl = data.serverResponseData.url
+            videoUrl?.let { showAVideoUrl(it) }
+        } else {
+            binding.imageView.load(data.serverResponseData.url ) { // квадратное становится прямоугольным
+                placeholder(drawable.progress_animation) // этот
+                error(drawable.ic_load_error_vector)
+            }
+            binding.titleOfImageview.setText(data.serverResponseData.title)
+            binding.descOfImageview.setText(data.serverResponseData.explanation)
+        }
+    }
+
+    private fun showAVideoUrl(videoUrl: String) = with(binding) {
+        imageView.visibility = View.GONE
+        titleOfImageview.visibility = View.VISIBLE
+        titleOfImageview.text = "Сегодня у нас без картинки дня, но есть  видео дня! " +
+                "${videoUrl.toString()} \n кликни >ЗДЕСЬ< чтобы открыть в новом окне"
+        titleOfImageview.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(videoUrl)
+            }
+            startActivity(i)
+        }
     }
 }

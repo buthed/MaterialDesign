@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.materialdesign.databinding.FragmentFavoritesBinding
 
 
-class FavoritesFragment:Fragment() {
+class FavoritesFragment:Fragment() { //TODO: доделать фрагмент
     var _bindong: FragmentFavoritesBinding? = null
     val binding: FragmentFavoritesBinding
         get() {
@@ -32,10 +32,8 @@ class FavoritesFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
     }
     companion object {
         fun newInstance() = FavoritesFragment()
     }
-
 }
