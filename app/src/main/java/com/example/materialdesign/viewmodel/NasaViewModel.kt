@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.materialdesign.repository.RetrofitImpl
 import com.example.materialdesign.repository.dto.MarsPhotosServerResponseData
+import com.example.materialdesign.repository.dto.MarsServerResponseData
 import com.example.materialdesign.repository.dto.PODServerResponseData
 import retrofit2.Call
 import retrofit2.Callback

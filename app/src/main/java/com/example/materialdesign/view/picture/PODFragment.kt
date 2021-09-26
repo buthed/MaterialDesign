@@ -170,7 +170,7 @@ class PODFragment : Fragment() {
             val videoUrl = data.serverResponseData.url
             videoUrl?.let { showAVideoUrl(it) }
         } else {
-            binding.imageView.load(data.serverResponseData.url) { // квадратное становится прямоугольным
+            binding.imageView.load(data.serverResponseData.url ) { // квадратное становится прямоугольным
                 placeholder(drawable.progress_animation) // этот
                 error(drawable.ic_load_error_vector)
             }
