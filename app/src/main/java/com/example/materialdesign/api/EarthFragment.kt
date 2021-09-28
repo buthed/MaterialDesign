@@ -34,10 +34,19 @@ class EarthFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         super.onCreate(savedInstanceState)
+
         binding.imageView.setOnClickListener {
-            TransitionManager.beginDelayedTransition(binding.transitionsContainer)
-            textIsVisible = !textIsVisible
-            binding.titlePlanet.visibility = if (textIsVisible) View.VISIBLE else View.GONE
+            if (textIsVisible) {
+                TransitionManager.beginDelayedTransition(binding.transitionsContainer, Slide(Gravity.END))
+                textIsVisible = !textIsVisible
+                binding.titlePlanet.visibility = if (textIsVisible) View.VISIBLE else View.GONE
+                binding.titlePlanet2.visibility = if (textIsVisible) View.VISIBLE else View.GONE
+            } else {
+                TransitionManager.beginDelayedTransition(binding.transitionsContainer, Slide(Gravity.START))
+                textIsVisible = !textIsVisible
+                binding.titlePlanet.visibility = if (textIsVisible) View.VISIBLE else View.GONE
+                binding.titlePlanet2.visibility = if (textIsVisible) View.VISIBLE else View.GONE
+            }
         }
     }
 
