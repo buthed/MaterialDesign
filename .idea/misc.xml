@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/tema/StudioProjects/MaterialDesign/app/src/main/res/drawable/circle_pause_vector.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/tema/StudioProjects/MaterialDesign/app/src/main/res/drawable/circle_play_vector.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/tema/StudioProjects/MaterialDesign/app/src/main/res/drawable/pause_to_play.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/tema/StudioProjects/MaterialDesign/app/src/main/res/drawable/play_pause_circle.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/tema/StudioProjects/MaterialDesign/app/src/main/res/drawable/play_to_pause.xml" value="0.23177083333333334" />
         <entry key="..\:/Users/tema/StudioProjects/MaterialDesign/app/src/main/res/layout/activity_animations_explode.xml" value="0.215625" />
         <entry key="..\:/Users/tema/StudioProjects/MaterialDesign/app/src/main/res/layout/activity_animations_explode_item.xml" value="0.215625" />
         <entry key="..\:/Users/tema/StudioProjects/MaterialDesign/app/src/main/res/layout/activity_animations_explode_list_item.xml" value="0.21927083333333333" />

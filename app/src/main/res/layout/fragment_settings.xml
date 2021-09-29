@@ -50,13 +50,15 @@
             android:text="@string/settings_radio_mars" />
     </RadioGroup>
 
-    <TextView
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/play_pause_circle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/titleTextSize"
-        android:text="@string/settings_theme_title"/>
-    <ImageView
-        android:id="@+id/settingImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:background="@drawable/play_pause_circle"
+        android:backgroundTint="@color/colorAccent"
+        android:checked="true"
+        android:contentDescription="@null"
+        android:thumb="@null" />
+
+
 </LinearLayout>
