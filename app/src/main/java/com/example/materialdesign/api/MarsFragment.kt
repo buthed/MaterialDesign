@@ -3,10 +3,15 @@ package com.example.materialdesign.api
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeImageTransform
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.api.load
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.FragmentMarsBinding
@@ -16,6 +21,8 @@ import com.example.materialdesign.viewmodel.NasaViewModel
 import com.example.materialdesign.viewmodel.PODData
 
 class MarsFragment: Fragment() {
+
+    private var isExpanded = false
 
     private var _binding: FragmentMarsBinding? = null
     val binding: FragmentMarsBinding
@@ -42,6 +49,22 @@ class MarsFragment: Fragment() {
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
 
         viewModel.getMarsPicture()
+
+        binding.imageView.setOnClickListener {
+            isExpanded = !isExpanded
+            TransitionManager.beginDelayedTransition(
+                binding.container, TransitionSet()
+                    .addTransition(ChangeBounds())
+                    .addTransition(ChangeImageTransform())
+            )
+
+            val params: ViewGroup.LayoutParams = binding.imageView.layoutParams
+            params.height =
+                if (isExpanded) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.MATCH_PARENT
+            binding.imageView.layoutParams = params
+            binding.imageView.scaleType = if (isExpanded) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.CENTER_INSIDE
+        }
+
     }
 
     private fun renderData(data: PODData) {
