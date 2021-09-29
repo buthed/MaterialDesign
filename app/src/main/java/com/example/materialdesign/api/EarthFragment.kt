@@ -41,7 +41,8 @@ class EarthFragment: Fragment() {
                 textIsVisible = !textIsVisible
                 binding.titlePlanet.visibility = if (textIsVisible) View.VISIBLE else View.GONE
                 binding.titlePlanet2.visibility = if (textIsVisible) View.VISIBLE else View.GONE
-            } else {
+            }
+            else {
                 TransitionManager.beginDelayedTransition(binding.transitionsContainer, Slide(Gravity.START))
                 textIsVisible = !textIsVisible
                 binding.titlePlanet.visibility = if (textIsVisible) View.VISIBLE else View.GONE
