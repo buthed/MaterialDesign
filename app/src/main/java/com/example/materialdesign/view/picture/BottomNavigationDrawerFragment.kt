@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.BottomNavigationLayoutBinding
+import com.example.materialdesign.view.favorites.FavoritesFragment
+import com.example.materialdesign.view.settings.SettingsFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
@@ -29,7 +31,8 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         binding.navigationView.setNavigationItemSelectedListener { it->
             when(it.itemId){
                 R.id.app_bar_fav ->{
-                    Toast.makeText(context,"Favorite", Toast.LENGTH_SHORT).show()
+                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,
+                        FavoritesFragment.newInstance()).addToBackStack("").commit()
                 }
                 R.id.app_bar_settings ->{
                     Toast.makeText(context,"Settings", Toast.LENGTH_SHORT).show()
