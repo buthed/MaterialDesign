@@ -19,4 +19,9 @@
     <string name="earth_spinning">is spinning</string>
     <string name="favorites_planets">Favorites planets</string>
     <string name="favorites_stars">Favorites stars</string>
+    <string name="bonus">Bonus Animation</string>
+    <string name="bonus_best_film">Click here for look the best film about cosmos</string>
+    <string name="bonus_film_date">"2 april, 1968 "</string>
+    <string name="bonus_film_name">2001: A Space Odyssey</string>
+    <string name="bonus_film_desc">After discovering a mysterious artifact buried beneath the Lunar surface, mankind sets off on a quest to find its origins with help from intelligent supercomputer H.A.L. 9000.</string>
 </resources>
