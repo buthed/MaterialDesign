@@ -27,9 +27,11 @@ class FavoritesFragment:Fragment() { //TODO: доделать фрагмент
         savedInstanceState: Bundle?
     ): View? {
         _bindong =  FragmentFavoritesBinding.inflate(inflater)
-        setFAB()
         return  binding.root
     }
+
+
+
 
     private fun setFAB() {
         setInitialState()
@@ -135,6 +137,11 @@ class FavoritesFragment:Fragment() { //TODO: доделать фрагмент
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setFAB()
+        binding.scrollView.setOnScrollChangeListener { _, _, _, _, _ ->
+            binding.header.isSelected = binding.scrollView.canScrollVertically(-1)
+        }
 
     }
     companion object {
