@@ -47,8 +47,11 @@ class SystemFragment: Fragment() {
         explode.excludeTarget(clickedView,true)
         explode.duration = 3000
 
+        val fade = Fade().addTarget(clickedView)
+        fade.duration = 3000
         val setTransition = TransitionSet()
             .addTransition(explode)
+            .addTransition(fade)
 
         TransitionManager.beginDelayedTransition(binding.recyclerView,setTransition)
         binding.recyclerView.adapter = null
