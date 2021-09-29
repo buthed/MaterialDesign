@@ -16,7 +16,7 @@ import com.example.materialdesign.R
 import com.example.materialdesign.R.*
 import com.example.materialdesign.api.ApiActivity
 import com.example.materialdesign.api.ApiBottomActivity
-import com.example.materialdesign.databinding.FragmentMainStartBinding
+import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.view.MainActivity
 import com.example.materialdesign.view.settings.SettingsFragment
 import com.example.materialdesign.viewmodel.PODData
@@ -28,8 +28,8 @@ class PODFragment : Fragment() {
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
-    private var _binding: FragmentMainStartBinding? = null
-    val binding: FragmentMainStartBinding
+    private var _binding: FragmentMainBinding? = null
+    val binding: FragmentMainBinding
         get() {
             return _binding!!
         }
@@ -50,7 +50,7 @@ class PODFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMainStartBinding.inflate(inflater)
+        _binding = FragmentMainBinding.inflate(inflater)
         setActionBar()
         return binding.root
     }

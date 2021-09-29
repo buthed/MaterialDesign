@@ -2,9 +2,11 @@
 <resources>
 
     <!-- settings fragment -->
+    <dimen name="defaultMargin">16dp</dimen>
     <dimen name="topMarginRowContent">16dp</dimen>
     <dimen name="startMarginRowContent">16dp</dimen>
     <dimen name="endMarginRowContent">16dp</dimen>
+    <dimen name="titletMargin">55dp</dimen>
     <dimen name="titleTextSize">40sp</dimen>
     <dimen name="middleTextSize">40sp</dimen>
     <dimen name="defaultTextSize">20sp</dimen>
