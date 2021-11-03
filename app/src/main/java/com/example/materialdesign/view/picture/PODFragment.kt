@@ -18,6 +18,7 @@ import com.example.materialdesign.api.ApiActivity
 import com.example.materialdesign.api.ApiBottomActivity
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.view.MainActivity
+import com.example.materialdesign.view.planets.PlanetsFragment
 import com.example.materialdesign.view.settings.SettingsFragment
 import com.example.materialdesign.viewmodel.PODData
 import com.example.materialdesign.viewmodel.NasaViewModel
@@ -152,6 +153,9 @@ class PODFragment : Fragment() {
             }
             R.id.app_bar_settings -> {
                 requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,SettingsFragment.newInstance()).addToBackStack("").commit()
+            }
+            R.id.app_bar_planets -> {
+                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,PlanetsFragment.newInstance()).addToBackStack("").commit()
             }
             // у нашего бургера такой вот id внутри android
             android.R.id.home -> {

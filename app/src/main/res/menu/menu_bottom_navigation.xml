@@ -12,4 +12,10 @@
         android:icon="@drawable/ic_settings_menu"
         android:title="@string/bonus"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/app_bar_planets"
+        android:icon="@drawable/circle_pause_vector"
+        android:title="@string/planets"
+        app:showAsAction="ifRoom" />
 </menu>

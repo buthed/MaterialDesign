@@ -9,6 +9,7 @@ import com.example.materialdesign.R
 import com.example.materialdesign.databinding.BottomNavigationLayoutBinding
 import com.example.materialdesign.view.bonus.BonusFragment
 import com.example.materialdesign.view.favorites.FavoritesFragment
+import com.example.materialdesign.view.planets.PlanetsFragment
 import com.example.materialdesign.view.settings.SettingsFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -38,6 +39,10 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 R.id.app_bar_settings ->{
                     requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,
                         BonusFragment.newInstance()).addToBackStack("").commit()
+                }
+                R.id.app_bar_planets  ->{
+                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,
+                        PlanetsFragment.newInstance()).addToBackStack("").commit()
                 }
             }
             true
