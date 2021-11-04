@@ -82,7 +82,6 @@ class PlanetsActivityAdapter (
 
     inner class MarsViewHolder(view: View) : BaseViewHolder(view),ItemTouchHelperViewHolder {
         override fun bind(pair: Pair<Data, Boolean>) {
-            // было itemView.findViewById<ImageView>(R.id.marsImageView).setOnClickListener {  }
             ActivityRecyclerItemMarsBinding.bind(itemView).apply {
                 marsImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(pair.first)
@@ -94,8 +93,14 @@ class PlanetsActivityAdapter (
                 removeItemImageView.setOnClickListener { removeItem() }
                 moveItemUp.setOnClickListener { moveUp() }
                 moveItemDown.setOnClickListener { moveDown() }
-                marsTextView.setOnClickListener { toggleText() }
+                //marsTextView.setOnClickListener { toggleText() }
                 marsDescriptionTextView.visibility = if (pair.second) View.VISIBLE else View.GONE
+                saveItemImageView.setOnClickListener {
+                    marsTextView.setText(marsEditTextView.text.toString())
+                    marsDescriptionTextView.setText(marsEditDescriptionTextView.text.toString())
+                    group.setVisibility(View.VISIBLE)
+                    editGroup.setVisibility(View.GONE)
+                }
 
                 dragHandleImageView.setOnTouchListener { v, event ->
                     if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
