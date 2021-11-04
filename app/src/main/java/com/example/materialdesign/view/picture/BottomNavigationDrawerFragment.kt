@@ -1,15 +1,15 @@
 package com.example.materialdesign.view.picture
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.BottomNavigationLayoutBinding
 import com.example.materialdesign.view.bonus.BonusFragment
 import com.example.materialdesign.view.favorites.FavoritesFragment
-import com.example.materialdesign.view.settings.SettingsFragment
+import com.example.materialdesign.view.planets.PlanetsActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
@@ -38,6 +38,11 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 R.id.app_bar_settings ->{
                     requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,
                         BonusFragment.newInstance()).addToBackStack("").commit()
+                }
+                R.id.app_bar_planets  ->{
+                    activity?.let {
+                        startActivity(Intent(it,PlanetsActivity::class.java))
+                    }
                 }
             }
             true
