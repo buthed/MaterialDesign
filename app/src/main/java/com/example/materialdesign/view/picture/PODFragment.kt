@@ -18,7 +18,7 @@ import com.example.materialdesign.api.ApiActivity
 import com.example.materialdesign.api.ApiBottomActivity
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.view.MainActivity
-import com.example.materialdesign.view.planets.RecyclerActivity
+import com.example.materialdesign.view.planets.PlanetsActivity
 import com.example.materialdesign.view.settings.SettingsFragment
 import com.example.materialdesign.viewmodel.PODData
 import com.example.materialdesign.viewmodel.NasaViewModel
@@ -156,7 +156,7 @@ class PODFragment : Fragment() {
             }
             R.id.app_bar_planets -> {
                 activity?.let {
-                    startActivity(Intent(it,RecyclerActivity::class.java))
+                    startActivity(Intent(it,PlanetsActivity::class.java))
                 }
             }
             // у нашего бургера такой вот id внутри android

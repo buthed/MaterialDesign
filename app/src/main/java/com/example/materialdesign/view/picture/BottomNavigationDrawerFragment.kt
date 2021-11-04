@@ -9,7 +9,7 @@ import com.example.materialdesign.R
 import com.example.materialdesign.databinding.BottomNavigationLayoutBinding
 import com.example.materialdesign.view.bonus.BonusFragment
 import com.example.materialdesign.view.favorites.FavoritesFragment
-import com.example.materialdesign.view.planets.RecyclerActivity
+import com.example.materialdesign.view.planets.PlanetsActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
@@ -41,7 +41,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 }
                 R.id.app_bar_planets  ->{
                     activity?.let {
-                        startActivity(Intent(it,RecyclerActivity::class.java))
+                        startActivity(Intent(it,PlanetsActivity::class.java))
                     }
                 }
             }

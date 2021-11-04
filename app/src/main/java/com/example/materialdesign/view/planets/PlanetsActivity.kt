@@ -6,27 +6,30 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.materialdesign.databinding.ActivityPlanetsBinding
 
 
-class RecyclerActivity : AppCompatActivity() {
+class PlanetsActivity : AppCompatActivity() {
     lateinit var binding: ActivityPlanetsBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlanetsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val data:MutableList<Data> = ArrayList()
         repeat(10){
             if(it%2==0){
-                data.add(Data("Earth"))
+                //data.add(Data("Earth"))
             }else{
                 data.add(Data("Mars",""))
             }
         }
         data.add(0,Data("Header"))
-        binding.recyclerView.adapter = PlanetsActivityAdapter(
+        val adapter= PlanetsActivityAdapter(
             object : OnListItemClickListener {
                 override fun onItemClick(data: Data) {
-                    Toast.makeText(this@RecyclerActivity,data.someText,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@PlanetsActivity,data.someText,Toast.LENGTH_SHORT).show()
                 }
             }, data)
+        binding.recyclerView.adapter = adapter
+        binding.recyclerActivityFAB.setOnClickListener { adapter.appendItem()}
     }
 }
