@@ -6,6 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="marsTextView,marsDescriptionTextView"
+        android:id="@+id/group" />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="marsEditTextView,marsEditDescriptionTextView"
+        android:id="@+id/editGroup" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/marsImageView"
         android:layout_width="80dp"
@@ -25,18 +38,41 @@
         app:layout_constraintStart_toEndOf="@+id/marsImageView"
         app:layout_constraintTop_toTopOf="@+id/marsImageView" />
 
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/marsEditTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Your note"
+        android:visibility="gone"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/marsImageView"
+        app:layout_constraintStart_toEndOf="@+id/marsImageView"
+        app:layout_constraintTop_toTopOf="@+id/marsImageView" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/marsDescriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Марс -- четвёртая по удалённости от Солнца и седьмая по размерам планета Солнечной системы. Названа в честь Марса -- древнеримского бога войны, соответствующего древнегреческому Аресу. Иногда Марс называют «красной планетой» из-за красноватого оттенка поверхности, придаваемого ей минералом маггемитом (оксидом железа)."
+        android:text="Blank note"
         android:textColor="#000"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marsImageView"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/marsEditDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:hint="Запишите что-нибудь :)"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/marsImageView" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/moveItemUp"
@@ -45,7 +81,7 @@
         android:layout_margin="10dp"
         android:tint="@color/design_default_color_error"
         app:layout_constraintBottom_toBottomOf="@+id/marsTextView"
-        app:layout_constraintEnd_toStartOf="@+id/addItemImageView"
+        app:layout_constraintEnd_toStartOf="@+id/editItemImageView"
         app:layout_constraintStart_toEndOf="@+id/marsTextView"
         app:layout_constraintTop_toTopOf="@+id/marsTextView"
         app:srcCompat="@android:drawable/arrow_up_float" />
@@ -57,13 +93,13 @@
         android:layout_margin="10dp"
         android:tint="@color/design_default_color_error"
         app:layout_constraintBottom_toBottomOf="@+id/marsTextView"
-        app:layout_constraintEnd_toStartOf="@+id/addItemImageView"
+        app:layout_constraintEnd_toStartOf="@+id/editItemImageView"
         app:layout_constraintStart_toEndOf="@+id/moveItemUp"
         app:layout_constraintTop_toTopOf="@+id/marsTextView"
         app:srcCompat="@android:drawable/arrow_down_float" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/addItemImageView"
+        android:id="@+id/editItemImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -71,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dragHandleImageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_plus_fab" />
+        app:srcCompat="@drawable/ic_edit" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/removeItemImageView"
@@ -79,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintEnd_toStartOf="@+id/dragHandleImageView"
-        app:layout_constraintTop_toBottomOf="@id/addItemImageView"
+        app:layout_constraintTop_toBottomOf="@id/editItemImageView"
         app:srcCompat="@drawable/ic_archive" />
 
     <androidx.appcompat.widget.AppCompatImageView

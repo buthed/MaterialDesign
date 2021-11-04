@@ -87,7 +87,10 @@ class PlanetsActivityAdapter (
                 marsImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(pair.first)
                 }
-                addItemImageView.setOnClickListener { addItem() }
+                editItemImageView.setOnClickListener {
+                    group.setVisibility(View.INVISIBLE)
+                    editGroup.setVisibility(View.VISIBLE)
+                }
                 removeItemImageView.setOnClickListener { removeItem() }
                 moveItemUp.setOnClickListener { moveUp() }
                 moveItemDown.setOnClickListener { moveDown() }
@@ -132,6 +135,11 @@ class PlanetsActivityAdapter (
             data.add(layoutPosition, Pair(generateItem(), false))
             notifyItemInserted(layoutPosition)
         }
+
+//        private fun editItem() {
+//
+//            itemView.setBackgroundColor(Color.LTGRAY)
+//        }
 
         private fun removeItem() {
             data.removeAt(layoutPosition)
