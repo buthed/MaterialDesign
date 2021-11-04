@@ -1,8 +1,11 @@
 package com.example.materialdesign.view.planets
 
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MotionEventCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.*
@@ -10,7 +13,7 @@ import com.example.materialdesign.databinding.*
 
 class PlanetsActivityAdapter (
     private var onListItemClickListener: OnListItemClickListener,
-    private var data: MutableList<Data>
+    private var data: MutableList<Pair<Data,Boolean>>
 ) : RecyclerView.Adapter<BaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -35,7 +38,7 @@ class PlanetsActivityAdapter (
 
     override fun getItemViewType(position: Int): Int {
         if(position==0) return TYPE_HEADER
-        return if(data[position].someDescription.isNullOrBlank()) TYPE_MARS else TYPE_EARTH
+        return if(data[position].first.someDescription.isNullOrBlank()) TYPE_MARS else TYPE_EARTH
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
@@ -47,37 +50,65 @@ class PlanetsActivityAdapter (
     }
 
     inner class EarthViewHolder(view: View):BaseViewHolder(view){
-        override fun bind(data: Data){
+        override fun bind(pair: Pair<Data,Boolean>){
             ActivityRecyclerItemEarthBinding.bind(itemView).apply {
-                descriptionTextView.text = data.someDescription
+                descriptionTextView.text = pair.first.someDescription
                 wikiImageView.setOnClickListener {
-                    onListItemClickListener.onItemClick(data)
+                    onListItemClickListener.onItemClick(pair.first)
                 }
             }
         }
     }
 
     fun appendItem(){
-        data.add(generateItem())
+        data.add(Pair(generateItem(), false))
         notifyItemInserted(itemCount-1)
     }
 
     private fun generateItem() = Data("Mars","")
 
     inner class MarsViewHolder(view: View):BaseViewHolder(view){
-        override fun bind(data: Data){
+        override fun bind(pair: Pair<Data,Boolean>){
             // было itemView.findViewById<ImageView>(R.id.marsImageView).setOnClickListener {  }
             ActivityRecyclerItemMarsBinding.bind(itemView).apply {
                 marsImageView.setOnClickListener {
-                    onListItemClickListener.onItemClick(data)
+                    onListItemClickListener.onItemClick(pair.first)
                 }
                 addItemImageView.setOnClickListener { addItem() }
                 removeItemImageView.setOnClickListener { removeItem() }
+                moveItemUp.setOnClickListener { moveUp() }
+                moveItemDown.setOnClickListener { moveDown() }
+                marsTextView.setOnClickListener { toggleText() }
+                marsDescriptionTextView.visibility =  if(pair.second) View.VISIBLE else View.GONE
             }
         }
 
+        private fun toggleText(){
+            data[layoutPosition] = data[layoutPosition].let{
+                it.first to !it.second
+            }
+            notifyItemChanged(layoutPosition)
+        }
+
+        private fun moveUp(){
+            layoutPosition.takeIf { it>1 }?.also {
+                data.removeAt(it).apply {
+                    data.add(it-1,this)
+                }
+                notifyItemMoved(it,it-1)
+            }
+        }
+
+        private fun moveDown(){
+            layoutPosition.takeIf { it<itemCount-1 }?.also {
+                data.removeAt(it).apply {
+                    data.add(it+1,this)
+                }
+                notifyItemMoved(it,it+1)
+            }
+        }
         private fun addItem(){
-            data.add(layoutPosition,generateItem())
+            data.add(layoutPosition, Pair(generateItem(),false))
             notifyItemInserted(layoutPosition)
         }
         private fun removeItem(){
@@ -87,11 +118,11 @@ class PlanetsActivityAdapter (
     }
 
     inner class HeaderViewHolder(view: View):BaseViewHolder(view){
-        override fun bind(data: Data){
+        override fun bind(pair: Pair<Data,Boolean>){
             // было itemView.findViewById<ImageView>(R.id.marsImageView).setOnClickListener {  }
             ActivityRecyclerItemHeaderBinding.bind(itemView).apply {
                 root.setOnClickListener {
-                    onListItemClickListener.onItemClick(data)
+                    onListItemClickListener.onItemClick(pair.first)
                 }
             }
         }

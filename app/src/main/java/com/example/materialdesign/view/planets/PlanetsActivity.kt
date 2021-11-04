@@ -14,15 +14,25 @@ class PlanetsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPlanetsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val data:MutableList<Data> = ArrayList()
+        val data:MutableList<Pair<Data,Boolean>> = ArrayList()
         repeat(10){
             if(it%2==0){
                 //data.add(Data("Earth"))
             }else{
-                data.add(Data("Mars",""))
+                data.add(Pair(Data("Mars",""),false))
             }
         }
-        data.add(0,Data("Header"))
+        val lat = 50
+        val lon = 30
+        val coordinate = lat to lon
+        val coordinate3d = Triple(1,2,3)
+        coordinate.first
+        coordinate.second
+        coordinate3d.first
+        coordinate3d.second
+        coordinate3d.third
+
+        data.add(0,Pair(Data("Header"),false))
         val adapter= PlanetsActivityAdapter(
             object : OnListItemClickListener {
                 override fun onItemClick(data: Data) {
