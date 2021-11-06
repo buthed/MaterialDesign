@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.MotionEventCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.materialdesign.R
 import com.example.materialdesign.databinding.*
 
 
