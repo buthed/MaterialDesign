@@ -3,8 +3,14 @@ package com.example.materialdesign.view.picture
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.text.style.TypefaceSpan
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -111,6 +117,35 @@ class PODFragment : Fragment() {
         when (data) {
             is PODData.SuccessPOD -> {
                 setData(data)
+                data.serverResponseData.explanation?.let{
+                    val spannableStart = SpannableStringBuilder(it)
+
+                    binding.descOfImageview.setText(spannableStart, TextView.BufferType.EDITABLE)
+                    val spannable = binding.descOfImageview.text as SpannableStringBuilder
+
+
+                    val start = 1
+                    val end  = 3
+                    spannable.setSpan(
+                        ForegroundColorSpan(resources.getColor(color.colorAccent)),start,
+                        end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannable.insert(end,"a")
+                    spannable.insert(start,"a")
+                    spannable.setSpan(
+                        ForegroundColorSpan(resources.getColor(color.colorPrimary)),5,
+                        25, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+
+                    spannable.setSpan(
+                        ForegroundColorSpan(resources.getColor(color.colorAccent)),20,
+                        55, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        spannable.setSpan(
+                            TypefaceSpan(resources.getFont(font.astro_armada_twotone)),56,
+                            70, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+                    }
+
+                }
             }
             is PODData.Error -> {//TODO HW
                 Toast.makeText(context, "PODData.Error", Toast.LENGTH_LONG).show()
