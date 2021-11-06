@@ -2,9 +2,12 @@ package com.example.materialdesign.view.picture
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
@@ -14,6 +17,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.provider.FontRequest
+import androidx.core.provider.FontsContractCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -145,6 +150,21 @@ class PODFragment : Fragment() {
                             70, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
                     }
 
+                    val request = FontRequest("com.google.android.gms.fonts",
+                        "com.google.android.gms","Homenaje", array.com_google_android_gms_fonts_certs)
+                    val fontCallback = object : FontsContractCompat.FontRequestCallback(){
+                        override fun onTypefaceRetrieved(typeface: Typeface?) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                typeface?.let {
+                                    spannable.setSpan(TypefaceSpan(it),0,
+                                        spannable.length,Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+                                }
+                            }
+                        }
+                    }
+                    FontsContractCompat.requestFont(requireContext(),request,fontCallback,
+                        Handler(Looper.getMainLooper())
+                    )
                 }
             }
             is PODData.Error -> {//TODO HW
