@@ -8,7 +8,8 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="?actionBarSize">
 
         <androidx.constraintlayout.motion.widget.MotionLayout
             android:id="@+id/main"
@@ -64,30 +65,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/input_layout"
                 app:srcCompat="@drawable/ic_no_photo_vector" />
 
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title_of_imageview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="@dimen/middleTextSize"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/image_view"
+                android:textColor="@color/black"
+                android:fontFamily="@font/astro_armada_twotone"
+                android:textSize="@dimen/middleTextSize"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_view" />
 
             <TextView
                 android:id="@+id/desc_of_imageview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="@dimen/defaultTextSize"
-                android:text="@string/example_desc"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/title_of_imageview"
+                android:text="@string/example_desc"
+                android:textColor="@color/black"
+                android:textSize="@dimen/defaultTextSize"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_of_imageview" />
         </androidx.constraintlayout.motion.widget.MotionLayout>
     </androidx.core.widget.NestedScrollView>
 
