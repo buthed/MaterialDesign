@@ -214,7 +214,6 @@ class PODFragment : Fragment() {
                     startActivity(Intent(it,PlanetsActivity::class.java))
                 }
             }
-            // у нашего бургера такой вот id внутри android
             android.R.id.home -> {
                 BottomNavigationDrawerFragment.newInstance()
                     .show(requireActivity().supportFragmentManager, "")
