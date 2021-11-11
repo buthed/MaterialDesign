@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(getRealStyle(getCurrentTheme()))
+        setTheme(R.style.Theme_MaterialDesign)
         binding =  ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
