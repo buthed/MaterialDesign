@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.imageView.animate().rotationBy(1000f).setInterpolator(LinearInterpolator()).duration = 3000
+        binding.imageView.animate().rotationX(1000f).setInterpolator(LinearInterpolator()).duration = 3000
         handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
